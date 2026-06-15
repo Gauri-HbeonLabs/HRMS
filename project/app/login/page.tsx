@@ -48,7 +48,9 @@ export default function LoginPage() {
     setLoading(true);
 
     const { error } = await signIn(email, password);
-
+    console.log("Sign In Error:", error);
+    console.log("Sign In Email:", email);
+    console.log("Sign in Password", password);
     if (error) {
       toast({
         title: "Error",
@@ -145,23 +147,21 @@ export default function LoginPage() {
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password" className="text-white">
+                    <Label htmlFor="signin-password" className="text-white">
+                      {" "}
+                      {/* Changed ID */}
                       Password
                     </Label>
 
                     <div className="relative">
                       <Input
-                        id="signup-password"
+                        id="signin-password" // Changed ID
                         type={showPassword ? "text" : "password"}
-                        placeholder="Min 6 characters"
-                        value={signUpData.password}
-                        onChange={(e) =>
-                          setSignUpData({
-                            ...signUpData,
-                            password: e.target.value,
-                          })
-                        }
+                        placeholder="Enter your password"
+                        value={password} // Bind to 'password' state, not 'signUpData'
+                        onChange={(e) => setPassword(e.target.value)} // Update 'password' state
                         className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20 pr-10"
                         required
                       />
@@ -170,9 +170,6 @@ export default function LoginPage() {
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
-                        aria-label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
                       >
                         {showPassword ? (
                           <Eye className="h-4 w-4" />
