@@ -310,7 +310,6 @@ export default function LoginPage() {
                           <SelectItem value="employee">Employee</SelectItem>
                           <SelectItem value="manager">Manager</SelectItem>
                           <SelectItem value="hr">HR</SelectItem>
-                          <SelectItem value="ceo">CEO</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
